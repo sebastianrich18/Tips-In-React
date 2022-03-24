@@ -1,6 +1,13 @@
 import { Form } from './Form';
 
+/*
 
+TODO: add + - to add/remove employees
+TODO: add employee dropdown to select employee
+TODO: make it not look like shit
+TODO: add scott easter egg
+
+*/
 
 function App() {
   return (
