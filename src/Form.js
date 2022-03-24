@@ -1,57 +1,54 @@
 import React from "react";
 import { Employee } from "./Employee";
 
-export class Form extends React.Component {
+export function Form(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = this.initState(); 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.initState = this.initState.bind(this);
-    }
-
-    initState() {
-        let out = {}
-        for (let i = 0; i < this.props.num; i++) {
-            out[i+"pay"] = 0;
-        }
-        return out
-    }
-
-    handleSubmit(event) {
+    const [total, setTotal] = React.useState(0);
+    const [pays, setPays] = React.useState([]);
+    const [hours, setHours] = React.useState([]);
+    
+    const handleSubmit = (event) => {
         event.preventDefault();
         let totalHours = 0;
-        for(let i=0; i< this.props.num; i++) {
-            if (this.state[i + "hours"]) {
-                totalHours += parseInt(this.state[i + "hours"]);
-            }
+        for(let key in hours) {
+            totalHours += parseFloat(hours[key]);
         }
-        for(let i=0; i< this.props.num; i++) {
-            if (this.state[i + "hours"]) {
-                let newPay = ((parseFloat(this.state[i + "hours"]) / totalHours) * parseFloat(this.state.total)).toFixed(2);
-                if (newPay) {
-                    this.setState({ [i + "pay"]: newPay });
-                }
+        
+        console.log(hours.entries())
+        for (let i in hours) {
+            let newPay = ((parseFloat(hours[i]) / totalHours) * parseFloat(total)).toFixed(2);
+            if (newPay) {
+                console.log(newPay, i)
+                let newPays = pays;
+                newPays[i] = newPay;
+                setPays(newPays);
             }
+            
         }
-        console.log(this.state);
+        console.log(pays)
+    }
+    
+    const handleHoursChange = (event) => {
+        let newHours = hours;
+        hours[event.target.name] = event.target.value;
+        setHours(newHours);
+        console.log(hours)
+
     }
 
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-        console.log(this.state)
+    const handleTotalTipsChange = (event) => {
+        setTotal(event.target.value);
     }
 
-    render() {
-        return (
-            <div className="form">
-                <form onSubmit={this.handleSubmit}>
-                    {Array.from({ length: this.props.num }, (v, i) => <Employee index={i} key={i} onChange={this.handleChange} pay={this.state[i+"pay"]} />)}
-                    <input type="number" min={0} name="total" placeholder="Total Tips" onChange={this.handleChange} />
-                    <input type="submit" value="Split" />
-                </form>
-            </div>
-        )
-    }
+
+    return (
+        <div className="form">
+            <form onSubmit={handleSubmit}>
+                {Array.from({ length: props.num }, (v, i) => <Employee index={i} key={i} onHoursChange={handleHoursChange} pay={pays[i]} />)}
+                <input type="number" min={0} name="total" placeholder="Total Tips" onChange={handleTotalTipsChange} />
+                <input type="submit" value="Split" />
+            </form>
+        </div>
+    )
+
 }
