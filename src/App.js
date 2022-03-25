@@ -1,5 +1,6 @@
 import { Form } from './Form';
 import { useCookies } from 'react-cookie';
+import { EmployeesHandler } from './EmployeesHandler';
 
 /*
 
@@ -22,6 +23,7 @@ function App() {
         Tip Splitter
       </div>
       <div className='form'>
+        <EmployeesHandler />
         <Form num={6} />
       </div>
 
