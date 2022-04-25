@@ -10,13 +10,15 @@ export function useEmployees() {
 
     const removeEmployee = (employee) => {
         let newEmployees = [...employees];
-        newEmployees.splice(newEmployees.indexOf(employee), 1);
+        if (newEmployees.includes(employee)) {
+            newEmployees.splice(newEmployees.indexOf(employee), 1);
+        }
         setCookie("employees", newEmployees, {expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), path: '/'});
     }
 
     console.log(typeof cookies.employees)
 
-    const employees = cookies.employees ? ["Employee", ...cookies.employees] : ["Employee"]
+    const employees = cookies.employees
 
     return [employees, addEmployee, removeEmployee]
 }
