@@ -13,7 +13,7 @@ export function Employee(props) {
             <select>
                 {employees.map((name, index) => <option key={index} value={index}>{name}</option>)}
             </select>
-            <input name={props.index} type="number" placeholder="Hours" min={0} onChange={props.onHoursChange} />
+            <input name={props.index} type="number" step={0.5} placeholder="Hours" min={0} onChange={props.onHoursChange} />
             <span id={props.index + "pay"} className="employee-tip">${props.pay}</span>
         </div>
     )
