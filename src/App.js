@@ -24,8 +24,9 @@ function App() {
       </div>
       <div className='form'>
         <EmployeesHandler />
-        <Form num={6} />
+        <Form num={12} />
       </div>
+      <span style={{position: "absolute", bottom: 20, left: 20}}>(This site has been updated so that more employee slots will be added as needed)</span>
 
     </div>
   );
