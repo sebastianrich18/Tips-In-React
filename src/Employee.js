@@ -1,25 +1,30 @@
-import React from "react";
-import { useCookies } from 'react-cookie';
-import { useEmployees } from "./useEmployees";
+import { Row, Col, Form } from "react-bootstrap";
 
-export function Employee(props) {
 
-    const [employees, setEmployees] = useEmployees();
-    const [cookies, setCookies] = useCookies(['employees']);
-    const [hasChanged, setHasChanged] = React.useState(false);
-
-    const handleEmployeeChange = (event) => {
-        props.onEmployeeChange(event, hasChanged);
-        setHasChanged(true);
-    }
-
+const Employee = (props) => {
     return (
-        <div className="employee">
-            <select onChange={handleEmployeeChange}>
-                {["Employee", ...employees].map((name, index) => <option key={index} value={index}>{name}</option>)}
-            </select>
-            <input name={props.index} type="number" step={0.25} placeholder="Hours" min={0} onChange={props.onHoursChange} />
-            <span id={props.index + "pay"} className="employee-tip">${props.pay}</span>
-        </div>
+        <div className="row">
+            <Row>
+                <Col>
+                    <Form.Select type="text" placeholder="Hours Worked">
+                        <option>Select Employee</option>
+                        {props.employees.map((employee) => {
+                            return <option>{employee}</option>
+                        })}
+                    </Form.Select>
+                </Col>
+
+                <Col>
+                    <Form.Control type="number" placeholder="Hours" />
+                </Col>
+                
+                <Col>
+                    <div className="tips-earned">$145.35</div>
+                </Col>
+            </Row>
+
+        </div >
     )
 }
+
+export default Employee;

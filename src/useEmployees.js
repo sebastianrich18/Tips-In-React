@@ -18,7 +18,7 @@ export function useEmployees() {
 
     console.log(typeof cookies.employees)
 
-    const employees = cookies.employees
+    const employees = cookies.employees ? cookies.employees : [];
 
     return [employees, addEmployee, removeEmployee]
 }
