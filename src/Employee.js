@@ -17,7 +17,7 @@ const Employee = (props) => {
                     <Form.Select type="text" placeholder="Hours Worked" onChange={(e) => props.addEmployee(e.target.value)}>
                         <option>Select Employee</option>
                         {props.employees.map((employee, i) => {
-                            return <option key={i}>{employee}</option>
+                            return <option key={i} disabled={props.selectedEmployees.includes(employee) ? true : false}>{employee}</option>
                         })}
                     </Form.Select>
                 </Col>

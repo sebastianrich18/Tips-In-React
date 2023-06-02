@@ -21,17 +21,7 @@ const Splitter = (props) => {
         setSelectedEmployees([...selectedEmployees, employee])
     }
 
-    const getEmployees = () => {
-        let unselected = []
-        props.employees.forEach((employee) => {
-            if (!selectedEmployees.includes(employee)) {
-                unselected.push(employee)
-            }
-        })
-        console.log("Unselected Employees")
-        console.log(unselected)
-        return unselected;
-    }
+
 
     const split = () => {
         const totalHours = hours.reduce((a, b) => a + b, 0);
@@ -50,7 +40,7 @@ const Splitter = (props) => {
         <div>
             <Container style={{ maxWidth: '2000px' }}>
                 {Array.from({ length: numEmployees }).map((x, i) => {
-                    return <Employee setHours={setHours} hours={hours} key={i} index={i} pay={pay[i]} employees={props.employees} addEmployee={addEmployee} selectedEmployees={selectedEmployees} />
+                    return <Employee setHours={setHours} hours={hours} key={i} index={i} pay={pay[i]} employees={props.employees} selectedEmployees={selectedEmployees} addEmployee={addEmployee} selectedEmployees={selectedEmployees} />
                 })}
                 <br />
                 <Row>
