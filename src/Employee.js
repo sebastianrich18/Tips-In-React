@@ -1,25 +1,36 @@
-import React from "react";
-import { useCookies } from 'react-cookie';
-import { useEmployees } from "./useEmployees";
+import { Row, Col, Form } from "react-bootstrap";
 
-export function Employee(props) {
 
-    const [employees, setEmployees] = useEmployees();
-    const [cookies, setCookies] = useCookies(['employees']);
-    const [hasChanged, setHasChanged] = React.useState(false);
+const Employee = (props) => {
 
-    const handleEmployeeChange = (event) => {
-        props.onEmployeeChange(event, hasChanged);
-        setHasChanged(true);
+
+    const updateHours = (e) => {
+        let newHours = [...props.hours];
+        newHours[props.index] = parseFloat(e.target.value);
+        props.setHours(newHours);
+        console.log(props.hours)
     }
 
     return (
-        <div className="employee">
-            <select onChange={handleEmployeeChange}>
-                {["Employee", ...employees].map((name, index) => <option key={index} value={index}>{name}</option>)}
-            </select>
-            <input name={props.index} type="number" step={0.25} placeholder="Hours" min={0} onChange={props.onHoursChange} />
-            <span id={props.index + "pay"} className="employee-tip">${props.pay}</span>
-        </div>
+            <Row>
+                <Col>
+                    <Form.Select type="text" placeholder="Hours Worked" onChange={(e) => props.addEmployee(e.target.value)}>
+                        <option>Select Employee</option>
+                        {props.employees.map((employee, i) => {
+                            return <option key={i}>{employee}</option>
+                        })}
+                    </Form.Select>
+                </Col>
+
+                <Col>
+                    <Form.Control type="number" placeholder="Hours" onChange={(e) => updateHours(e)}/>
+                </Col>
+                
+                <Col>
+                    <div className="tips-earned">{props.pay ? "$" + props.pay : null}</div>
+                </Col>
+            </Row>
     )
 }
+
+export default Employee;

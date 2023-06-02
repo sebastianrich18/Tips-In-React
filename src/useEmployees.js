@@ -16,9 +16,7 @@ export function useEmployees() {
         setCookie("employees", newEmployees, {expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), path: '/'});
     }
 
-    console.log(typeof cookies.employees)
-
-    const employees = cookies.employees
+    const employees = cookies.employees ? cookies.employees : [];
 
     return [employees, addEmployee, removeEmployee]
 }

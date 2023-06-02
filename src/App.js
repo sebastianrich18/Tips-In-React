@@ -1,33 +1,43 @@
-import { Form } from './Form';
 import { useCookies } from 'react-cookie';
-import { EmployeesHandler } from './EmployeesHandler';
-
-/*
-
-TODO: add + - to add/remove employees
-TODO: add employee dropdown to select employee
-TODO: make it not look like shit
-TODO: add scott easter egg
-
-*/
-
-
+import { Card, Tabs, Tab, Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from 'react';
+import Splitter from "./Splitter"
+import Manager from "./Manager"
+import { useEmployees } from './useEmployees';
 
 
 function App() {
   const [cookies, setCookie] = useCookies(['user']);
+  const [key, setKey] = useState('first');
+  const [employees, addEmployee, removeEmployee] = useEmployees();
+
 
   return (
     <div className="App">
-      <div className="header">
-        Tip Splitter
-      </div>
-      <div className='form'>
-        <EmployeesHandler />
-        <Form num={12} />
-      </div>
-      <span style={{position: "absolute", bottom: 20, left: 20}}>(This site has been updated so that more employee slots will be added as needed)</span>
-
+      <Container className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+        <Card style={{ width: '30rem' }}>
+          <Card.Header>
+            <Tabs
+              activeKey={key}
+              onSelect={(k) => setKey(k)}
+            >
+              <Tab eventKey="first" title="Split">
+                <Card.Body>
+                  <Card.Title>Split</Card.Title>
+                    <Splitter employees={employees} />
+                </Card.Body>
+              </Tab>
+              <Tab eventKey="second" title="Manage">
+                <Card.Body>
+                  <Card.Title>Manage</Card.Title>
+                    <Manager employees={employees} />
+                </Card.Body>
+              </Tab>
+            </Tabs>
+          </Card.Header>
+        </Card>
+      </Container>
     </div>
   );
 }
