@@ -7,12 +7,6 @@ import Manager from "./Manager"
 import { useEmployees } from './useEmployees';
 
 
-/*
- DESIGN:
- centered card, with rows for employees and total and split buttons
- "Manage employees" button will flip the card to a list where you can add and remove employees
-*/
-
 function App() {
   const [cookies, setCookie] = useCookies(['user']);
   const [key, setKey] = useState('first');
@@ -31,17 +25,13 @@ function App() {
               <Tab eventKey="first" title="Split">
                 <Card.Body>
                   <Card.Title>Split</Card.Title>
-                  <Card.Text>
                     <Splitter employees={employees} />
-                  </Card.Text>
                 </Card.Body>
               </Tab>
               <Tab eventKey="second" title="Manage">
                 <Card.Body>
                   <Card.Title>Manage</Card.Title>
-                  <Card.Text>
                     <Manager employees={employees} />
-                  </Card.Text>
                 </Card.Body>
               </Tab>
             </Tabs>
