@@ -21,7 +21,22 @@ const Splitter = (props) => {
         setSelectedEmployees([...selectedEmployees, employee])
     }
 
-
+    const removeSelectedEmployee = (employee) => {
+        // console.log(selectedEmployees)
+        // console.log("unselecting", employee)
+        // let newSelectedEmployees = []
+        // selectedEmployees.forEach((selectedEmployee) => {
+        //     if (selectedEmployee !== employee) {
+        //         newSelectedEmployees.push(selectedEmployee)
+        //     }
+        // })
+        // console.log(newSelectedEmployees)
+        // setSelectedEmployees(...newSelectedEmployees)
+        console.log("delete", employee)
+        console.log(selectedEmployees, employee)
+        console.log(selectedEmployees.filter((selectedEmployee) => selectedEmployee !== employee))
+        setSelectedEmployees(selectedEmployees.filter((selectedEmployee) => selectedEmployee !== employee))
+    }
 
     const split = () => {
         const totalHours = hours.reduce((a, b) => a + b, 0);
@@ -39,11 +54,22 @@ const Splitter = (props) => {
     return (
         <div>
             <Container style={{ maxWidth: '2000px' }}>
+                {console.log("render splitter")}
+                {console.log(selectedEmployees)}
                 {Array.from({ length: numEmployees }).map((x, i) => {
-                    return <Employee setHours={setHours} hours={hours} key={i} index={i} pay={pay[i]} employees={props.employees} selectedEmployees={selectedEmployees} addEmployee={addEmployee} selectedEmployees={selectedEmployees} />
+                    return <Employee 
+                    setHours={setHours} 
+                    hours={hours} 
+                    key={i} 
+                    index={i} 
+                    pay={pay[i]} 
+                    employees={props.employees}
+                    removeSelectedEmployee={removeSelectedEmployee} 
+                    addSelectedEmployee={addEmployee} 
+                    selectedEmployees={selectedEmployees} 
+                    />
                 })}
-                <br />
-                <Row>
+                <Row style={{marginTop: "24px"}}>
                     <Col>
                         <Form.Control type="number" placeholder='Total Tips' onChange={(e) => setTotalTips(parseFloat(e.target.value))} />
                     </Col>
