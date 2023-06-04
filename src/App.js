@@ -14,11 +14,12 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor: "#181a1b"}}>
       <Container className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
-        <Card style={{ width: '30rem' }}>
+        <Card bg="dark" style={{ width: '70%', maxHeight: '70%' }}>
           <Card.Header>
             <Tabs
+              variant='pills'
               activeKey={key}
               onSelect={(k) => setKey(k)}
             >

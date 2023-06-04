@@ -71,7 +71,7 @@ const Splitter = (props) => {
                 })}
                 <Row style={{marginTop: "24px"}}>
                     <Col>
-                        <Form.Control type="number" placeholder='Total Tips' onChange={(e) => setTotalTips(parseFloat(e.target.value))} />
+                        <Form.Control style={{  backgroundColor: '#181a1b', color:"#fff", borderColor: '#3c4144'}} type="number" placeholder='Total Tips' onChange={(e) => setTotalTips(parseFloat(e.target.value))} />
                     </Col>
                     <Col>
                         <Button onClick={() => split()}>Split</Button>

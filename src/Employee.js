@@ -42,7 +42,7 @@ const Employee = (props) => {
             {console.log("render employee " + props.index)}
             {console.log(props.selectedEmployees)}
             <Col>
-                <Form.Select type="text" placeholder="Hours Worked" onChange={(e) => employeeChanged(e)}>
+                <Form.Select style={{  backgroundColor: '#181a1b', color:"#fff", borderColor: '#3c4144'}} type="text" placeholder="Hours Worked" onChange={(e) => employeeChanged(e)}>
                     <option>Employee</option>
                     {props.employees.map((employee, i) => {
 
@@ -54,7 +54,7 @@ const Employee = (props) => {
             </Col>
 
             <Col>
-                <Form.Control type="number" placeholder="Hours" onChange={(e) => updateHours(e)} />
+                <Form.Control style={{  backgroundColor: '#181a1b', color:'fff', borderColor: '#3c4144'}} type="number" placeholder="Hours" onChange={(e) => updateHours(e)} />
             </Col>
 
             <Col>
