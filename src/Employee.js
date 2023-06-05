@@ -54,11 +54,11 @@ const Employee = (props) => {
             </Col>
 
             <Col>
-                <Form.Control style={{  backgroundColor: '#181a1b', color:'fff', borderColor: '#3c4144'}} type="number" placeholder="Hours" onChange={(e) => updateHours(e)} />
+                <Form.Control style={{  backgroundColor: '#181a1b', color:'#fff', borderColor: '#3c4144'}} type="number" placeholder="Hours" onChange={(e) => updateHours(e)} />
             </Col>
 
             <Col>
-                <div className="tips-earned">{props.pay ? "$" + props.pay : null}</div>
+                <div className="tips-earned" style={{color: '#fff'}}>{props.pay ? "$" + props.pay : null}</div>
             </Col>
         </Row>
     )
